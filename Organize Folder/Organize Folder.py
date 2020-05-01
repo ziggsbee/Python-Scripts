@@ -1,3 +1,4 @@
+# -----------------------------------------------------------------------------
 # MIT License
 
 # Copyright (c) 2020 nwporsch
@@ -19,28 +20,48 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# ------------------------------------------------------------------------------
 
-
-import tkinter, os
+import tkinter
+import os
+import shutil
 from tkinter import filedialog
 
-documentTypes = [".doc", ".pdf"]
+documentTypes = [".doc", ".pdf", ".txt"]
 imageTypes = [".png"]
 
 window = tkinter.Tk(className="Organize folder")
 
+
 def find_folder():
+    """
+    Opens file dialog for the user and asks for a folder.
+    When the folder is provided then the script will go through and organize each file in the folder
+    """
+
     folder = tkinter.filedialog.askdirectory()
-    for item in os.scandir(path=folder):
-        if item.is_file():
-            file_type = item.name[item.name.find(".", item.name.count(".")):].lower()
-            if documentTypes.count(file_type) > 0:
-                print("DOC")
-            elif imageTypes.count(file_type) > 0:
-                print("IMAGE")
+
+    if folder != '':
+        documents_path = folder + "/Documents/"
+        images_path = folder + "/Images/"
+        for item in os.scandir(path=folder):
+
+            if item.is_file():
+                file_type = item.name[item.name.find(".", item.name.count(".")):].lower()
+
+                if documentTypes.count(file_type) > 0:
+
+                    if not (os.path.exists(documents_path)):
+                        os.mkdir(documents_path)
+                    shutil.move(item.path, documents_path + "/" + item.name)
+
+                elif imageTypes.count(file_type) > 0:
+                    if not (os.path.exists(images_path)) :
+                        os.mkdir(images_path)
+                    shutil.move(item.path, images_path + "/" + item.name)
 
 
-button = tkinter.Button(text="Open File", width=25, height=5, command=find_folder)
+button = tkinter.Button(text="Open File", width=50, height=2, command=find_folder)
 button.pack()
 
 window.mainloop()
