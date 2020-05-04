@@ -1,4 +1,4 @@
-# Python-Scripts
+# Python Scripts
 This repo provides a list of basic scripts I have created to help with general tasks in my life
 
 ## Organize Folder
