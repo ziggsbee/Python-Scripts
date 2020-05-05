@@ -23,30 +23,48 @@
 # ------------------------------------------------------------------------------
 
 import tkinter
-import os
-import shutil
 from tkinter import filedialog
+import PyPDF2
 
 window = tkinter.Tk(className="File Summarizer")
 
 
-def summarize():
+def summarize(path_to_original_file, text):
     """
     When given the data in a file the method will read the data and provide a summary of the data
     :return: a summary of the file
     """
+    print(text)
 
-    # TODO: Add the abliity to summarize a file
 
-
-def read_in_file():
+def read_in_file(file):
     """
     When provided a file the function will read in the data then provide the data to summarize so the program
     can summarize the file
     :return:
     """
 
-    # TODO: Add the ability to read in files
+    # text_from_file will hold in the data from the file provided by the user
+    text_from_file = ""
+
+    file_type = file.name[file.name.find(".", file.name.count(".")):].lower()
+
+    # Read in a PDF File into text_from_file
+    if file_type == ".pdf":
+        print("pdf")
+        pdf_file = open(file.name, 'rb')
+        pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+        for index in range(pdf_reader.getNumPages()):
+            page = pdf_reader.getPage(index)
+            text_from_file += page.extractText()
+        pdf_file.close()
+    # Read in a Text File into text_from_file
+    elif file_type == ".txt":
+        text_file = open(file.name, "r")
+        text_from_file += text_file.read()
+        text_file.close()
+
+    summarize(file, text_from_file)
 
 
 def find_file():
@@ -61,10 +79,8 @@ def find_file():
         print(file)
         if file != '' and file is not None:
             break
-        # TODO: Add other conditions such as only allowing certain file types
 
-        read_in_file()
-        summarize()
+    read_in_file(file)
 
 
 button = tkinter.Button(text="Open File", width=50, height=2, command=find_file)
