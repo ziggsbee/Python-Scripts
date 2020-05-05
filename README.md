@@ -9,3 +9,6 @@ file extensions.
 ## File Summarizer
 Current script that I am working on that will be able to read in a file such as a .doc, .pdf, .txt and
 provide a summary of the files contents.
+
+## Sum of ASCII Values In a Text File
+This script is used to read in a text file and sums of each character's ASCII values and then compares each file line to the previous line and outputs the difference the sums. Used this to test the output of another program I created in the repo: [CIS520 Project 4](https://github.com/nwporsch/CIS520-Project-4)
