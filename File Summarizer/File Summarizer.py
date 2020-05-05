@@ -25,6 +25,7 @@
 import tkinter
 from tkinter import filedialog
 import PyPDF2
+import summarization_functions as sf
 
 window = tkinter.Tk(className="File Summarizer")
 
@@ -34,7 +35,7 @@ def summarize(path_to_original_file, text):
     When given the data in a file the method will read the data and provide a summary of the data
     :return: a summary of the file
     """
-    print(text)
+    text = sf.clean_text(text)
 
 
 def read_in_file(file):
@@ -51,7 +52,6 @@ def read_in_file(file):
 
     # Read in a PDF File into text_from_file
     if file_type == ".pdf":
-        print("pdf")
         pdf_file = open(file.name, 'rb')
         pdf_reader = PyPDF2.PdfFileReader(pdf_file)
         for index in range(pdf_reader.getNumPages()):
@@ -76,7 +76,6 @@ def find_file():
     # loops until the user provides a file
     while True:
         file = tkinter.filedialog.askopenfile()
-        print(file)
         if file != '' and file is not None:
             break
 
