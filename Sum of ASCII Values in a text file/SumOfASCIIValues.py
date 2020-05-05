@@ -35,11 +35,12 @@ def sumofascii(line):
     When provided the line of a file the sum of every ASCII value in the line is added to the listOfSums
     :param line:
     """
+    index = 0
     sum = 0
-
     for c in line:
-        if c is not '\n':
+        if index < 1000:
             sum = sum + ord(c)
+            index += 1
 
     listOfSums.append(sum)
 
@@ -49,12 +50,12 @@ def read_in_file(f):
     When provided a file the function will read in the data into the listOfLines variable
     :return:
     """
-
-    line = f.readline()
+    index = 0
+    line = f.readline()[0:999]
     while line:
-        print(line)
         listOfLines.append(line)
-        line = f.readline()
+        line = f.readline()[0:999]
+        index += 1
 
     f.close()
 
@@ -80,7 +81,7 @@ def find_file():
 
     # loops through the sum of ASCII characters and returns the difference from the sum before the current sum
     while index is not len(listOfSums) - 1:
-        print(listOfSums[index] - listOfSums[index + 1])
+        print(index, "-", index + 1, ": ", listOfSums[index] - listOfSums[index + 1])
         index += 1
 
 
