@@ -38,7 +38,7 @@ def sumofascii(line):
     index = 0
     sum = 0
     for c in line:
-        if index < 1000:
+        if index < 10:
             sum = sum + ord(c)
             index += 1
 
