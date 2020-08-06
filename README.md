@@ -6,6 +6,9 @@ The script will take in a folder and will organize the files based on if the fil
 an image file. Currently, only supports .doc, .pdf, .txt, .png ,but can be easily modified for more 
 file extensions.
 
+## Port Scanner
+A script I used to test out my understanding of port scanners. I based it off of some of the other code snippets I have found such as the red team field manual.
+
 ## File Summarizer
 Current script that I am working on that will be able to read in a file such as a .doc, .pdf, .txt and
 provide a summary of the files contents.
