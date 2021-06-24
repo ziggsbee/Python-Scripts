@@ -28,8 +28,8 @@ if 2 < len(sys.argv) < 5:
         If it is not a number then we think of it as wanting to search for a common ports
         (I will probably change this later to add more parameters
         '''
-        common_ports = {80, 443, 21, 22, 110, 995, 143, 993, 25,
-                        26, 587, 3306, 2082, 2083, 2086, 2087,
+        common_ports = {80, 443, 20, 21, 22, 23, 25, 69, 110, 995, 143, 902, 993,
+                         385, 587, 3306, 2082, 2083, 2086, 2087,
                         2095, 2096, 2077, 2078, 3389}
         print("Scanning: {} for common open ports".format(sys.argv[1]))
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
