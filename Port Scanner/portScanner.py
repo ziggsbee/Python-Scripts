@@ -30,7 +30,7 @@ if 2 < len(sys.argv) < 5:
         '''
         common_ports = {80, 443, 21, 22, 110, 995, 143, 993, 25,
                         26, 587, 3306, 2082, 2083, 2086, 2087,
-                        2095, 2096, 2077, 2078}
+                        2095, 2096, 2077, 2078, 3389}
         print("Scanning: {} for common open ports".format(sys.argv[1]))
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         for port in common_ports:
